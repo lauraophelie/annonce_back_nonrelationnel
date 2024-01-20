@@ -1,10 +1,10 @@
-package com.voiture.annonce;
+package com.example.voiture;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AnnonceApplicationTests {
+class VoitureApplicationTests {
 
 	@Test
 	void contextLoads() {

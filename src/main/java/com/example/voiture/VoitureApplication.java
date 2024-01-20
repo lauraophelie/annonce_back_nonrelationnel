@@ -1,13 +1,13 @@
-package com.voiture.annonce;
+package com.example.voiture;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AnnonceApplication {
+public class VoitureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AnnonceApplication.class, args);
+		SpringApplication.run(VoitureApplication.class, args);
 	}
 
 }
