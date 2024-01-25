@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Id;
 
@@ -26,11 +26,10 @@ public class Message {
 
     @JsonProperty("date_heure")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private LocalDate dateHeure;
+    private LocalDateTime dateHeure;
 
-    public Message(String id, Conversation conversation, Utilisateur sender, String contenuMessage,
-            LocalDate dateHeure) {
-        this.id = id;
+    public Message(Conversation conversation, Utilisateur sender, String contenuMessage,
+            LocalDateTime dateHeure) {
         this.conversation = conversation;
         this.sender = sender;
         this.contenuMessage = contenuMessage;
@@ -72,11 +71,11 @@ public class Message {
         this.contenuMessage = contenuMessage;
     }
 
-    public LocalDate getDateHeure() {
+    public LocalDateTime getDateHeure() {
         return dateHeure;
     }
 
-    public void setDateHeure(LocalDate dateHeure) {
+    public void setDateHeure(LocalDateTime dateHeure) {
         this.dateHeure = dateHeure;
     }
 }

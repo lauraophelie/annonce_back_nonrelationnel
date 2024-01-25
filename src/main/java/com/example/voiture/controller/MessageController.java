@@ -43,7 +43,7 @@ public class MessageController {
     }
 
     @GetMapping("/messages")
-    public Response listConversationsByUser(@RequestParam String conversationId) {
+    public Response listMessagesByConversation(@RequestParam String conversationId) {
         Response response = new Response();
         Conversation conversation = conversationService.getConversationById(conversationId);
         List<Message> message = messageService.listMessagesByConversation(conversation);

@@ -21,8 +21,13 @@ public class UtilisateurService {
         return utilisateurRepository.findByEmailAndPassword(email, password);
     }
 
+    public Utilisateur getUtilisateur(String email) {
+        return utilisateurRepository.findByEmail(email);
+    }
+
     public Utilisateur getUtilisateurById(String id) {
         Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findById(id);
+        System.out.println("utilisateurOptional nom : " + utilisateurOptional.get().getNomComplet());
         return utilisateurOptional.orElse(null);
     }
 }

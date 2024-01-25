@@ -1,4 +1,5 @@
 package com.example.voiture.repository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,8 @@ import com.example.voiture.entity.Utilisateur;
 public interface ConversationRepository extends MongoRepository<Conversation, String> {
     @Query("{ $or: [ { 'utilisateur1': ?0 }, { 'utilisateur2': ?0 } ] }")
     List<Conversation> findByUtilisateur(Utilisateur utilisateur);
-    
+
+    Conversation findByUtilisateur1AndUtilisateur2(Utilisateur utilisateur1, Utilisateur utilisateur2);
+
     Optional<Conversation> findById(String id);
 }
-

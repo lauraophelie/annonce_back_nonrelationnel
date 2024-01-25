@@ -1,30 +1,18 @@
 [
     {
         "utilisateur1" : {
-            "nom_complet": "John Doe",
-            "date_naissance": "1990-05-15",
-            "email": "john.doe@example.com",
-            "password": "motdepasse123"
-        },
-        "utilisateur2" : {
             "nom_complet": "Alice Smith",
             "date_naissance": "1985-08-22",
             "email": "alice.smith@example.com",
-            "password": "password456"
-        }
-    },
-    {
-        "utilisateur1" : {
-            "nom_complet": "Alice Smith",
-            "date_naissance": "1985-08-22",
-            "email": "alice.smith@example.com",
-            "password": "password456"
+            "password": "password456",
+            "role":0
         },
         "utilisateur2" : {
             "nom_complet": "Daniel Lee",
             "date_naissance": "1988-06-18",
             "email": "daniel.lee@example.com",
-            "password": "strongpass789"
+            "password": "strongpass789",
+            "role":0
         }
     },
     {
@@ -32,26 +20,30 @@
             "nom_complet": "Eva Brown",
             "date_naissance": "1995-11-28",
             "email": "eva.brown@example.com",
-            "password": "safepassword321"
+            "password": "safepassword321",
+            "role":0
         },
         "utilisateur2" : {
             "nom_complet": "Bob Johnson",
             "date_naissance": "1982-03-10",
             "email": "bob.johnson@example.com",
-            "password": "securepass789"
+            "password": "securepass789",
+            "role":0
         }
     },{
         "utilisateur1" : {
             "nom_complet": "Bob Johnson",
             "date_naissance": "1982-03-10",
             "email": "bob.johnson@example.com",
-            "password": "securepass789"
+            "password": "securepass789",
+            "role":0
         },
         "utilisateur2" : {
             "nom_complet": "Alice Smith",
             "date_naissance": "1985-08-22",
             "email": "alice.smith@example.com",
-            "password": "password456"
+            "password": "password456",
+            "role":0
         }
     }
 ]

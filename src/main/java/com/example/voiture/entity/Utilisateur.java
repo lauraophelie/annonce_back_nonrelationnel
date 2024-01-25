@@ -28,17 +28,21 @@ public class Utilisateur {
     @JsonProperty("password")
     private String password;
 
+    @JsonProperty("role")
+    private int role;
+
     public Utilisateur() {
     }
 
-    public Utilisateur(String id, String nomComplet, LocalDate dateNaissance, String email, String password) {
+    public Utilisateur(String id, String nomComplet, LocalDate dateNaissance, String email, String password, int role) {
         this.id = id;
         this.nomComplet = nomComplet;
         this.dateNaissance = dateNaissance;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
-
+    
     public String getId() {
         return id;
     }
@@ -77,5 +81,20 @@ public class Utilisateur {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        if (this.role == 1) {
+            return "ADMIN";
+        }
+        return "USER";
+    }
+
+    public void setRole(String admin) {
+        if (admin.equalsIgnoreCase("ROLE_ADMIN")) {
+            this.role = 1;
+        } else {
+            this.role = 0;
+        }
     }
 }

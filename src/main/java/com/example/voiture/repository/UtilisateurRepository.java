@@ -12,6 +12,6 @@ import com.example.voiture.entity.Utilisateur;
 public interface UtilisateurRepository extends MongoRepository<Utilisateur, String> {
 
     Utilisateur findByEmailAndPassword(String email, String password);
-
+    Utilisateur findByEmail(String email);
     Optional<Utilisateur> findById(String id);
 }

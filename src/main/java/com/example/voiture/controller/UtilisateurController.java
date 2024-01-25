@@ -38,6 +38,7 @@ public class UtilisateurController {
     public Response getOneUtilisateur(@RequestParam String utilisateurId) {
         Response response = new Response();
         Utilisateur utilisateurRecupere = utilisateurService.getUtilisateurById(utilisateurId);
+        System.out.println("utilisateurRecupere " + utilisateurRecupere.getNomComplet());
         response.setDonner(utilisateurRecupere);
         if (response.getDonner() != null) {
             response.setErreur(false);
@@ -47,6 +48,5 @@ public class UtilisateurController {
         }
         return response;
     }
-    
 }
 
