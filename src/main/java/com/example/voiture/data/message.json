@@ -1,0 +1,29 @@
+[
+    {
+        "conversation": {
+            "utilisateur1" : {
+                "nom_complet": "Alice Smith",
+                "date_naissance": "1985-08-22",
+                "email": "alice.smith@example.com",
+                "password": "password456",
+                "role":0
+            },
+            "utilisateur2" : {
+                "nom_complet": "Daniel Lee",
+                "date_naissance": "1988-06-18",
+                "email": "daniel.lee@example.com",
+                "password": "strongpass789",
+                "role":0
+            }
+        },
+        "sender": {
+            "nom_complet": "Alice Smith",
+            "date_naissance": "1985-08-22",
+            "email": "alice.smith@example.com",
+            "password": "password456",
+            "role":0
+        },
+        "contenu_message": "Bonjour, comment ça va ?",
+        "date_heure": "2022-01-05 12:30:45"
+    }
+]
