@@ -1,5 +1,6 @@
 package com.example.voiture.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -7,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Id;
+//import jakarta.persistence.Id;
 
 @Document(collection = "message")
 public class Message {
