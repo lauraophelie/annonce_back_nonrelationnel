@@ -84,9 +84,11 @@ public class JwtUtil {
         return claims.getSubject();
     }
 
-    public static String getUserId(Claims claims) {
+    /*public static String getUserId(Claims claims) {
         return claims.get("id", String.class);
-    }
-  
+    }*/
 
+    public static Object getUserId(Claims claims) {
+        return claims.get("id", Object.class);
+    }
 }
