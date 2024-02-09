@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.voiture.entity.Utilisateur;
 import com.example.voiture.response.Response;
 import com.example.voiture.services.UtilisateurService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
 @RequestMapping("/utilisateur")
+@CrossOrigin(origins = "*")
 public class UtilisateurController {
 
     @Autowired
