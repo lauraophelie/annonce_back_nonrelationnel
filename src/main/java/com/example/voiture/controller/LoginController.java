@@ -2,6 +2,7 @@ package com.example.voiture.controller;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,7 @@ import com.example.voiture.entity.request.LoginReq;
 import com.example.voiture.entity.response.ErrorRes;
 import com.example.voiture.entity.response.LoginRes;
 import com.example.voiture.repository.UtilisateurRepository;
+import com.example.voiture.services.UtilisateurService;
 
 import jakarta.servlet.http.*;
 
@@ -30,6 +32,9 @@ public class LoginController {
 
     private JwtUtil jwtUtil;
     private final UtilisateurRepository r_Admin;
+
+    @Autowired
+    private UtilisateurService utilisateurService;
 
     public LoginController(AuthenticationManager authenticationManager, JwtUtil jwtUtil,UtilisateurRepository r_Admin) {
         this.authenticationManager = authenticationManager;
@@ -64,6 +69,29 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
+   
+    @ResponseBody
+    @RequestMapping(value = "/inscription", method = RequestMethod.POST)
+    public ResponseEntity inscription(@RequestBody Utilisateur utilisateur) {
+        try {
+            Utilisateur utilisateurAjoute = utilisateurService.insererUtilisateur(utilisateur);
+            Authentication authentication = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(utilisateur.getEmail(),
+                            utilisateur.getPassword()));
+            String email = authentication.getName();
+            utilisateurAjoute.setRole(((List<? extends GrantedAuthority>)authentication.getAuthorities()).get(0).getAuthority());
+            String token = jwtUtil.createToken(utilisateurAjoute);
+            LoginRes loginRes = new LoginRes(email, token);
+            return ResponseEntity.ok(loginRes);
+        } catch (BadCredentialsException e) {
+            ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST, "Invalid username or password");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        } catch (Exception e) {
+            ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST, e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+    }
+
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void logout(HttpServletRequest request) {

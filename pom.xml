@@ -81,6 +81,11 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-admin</artifactId>
+			<version>8.0.0</version> <!-- Mettez la version la plus récente ici -->
+		</dependency>		
 	</dependencies>
 
 	<build>

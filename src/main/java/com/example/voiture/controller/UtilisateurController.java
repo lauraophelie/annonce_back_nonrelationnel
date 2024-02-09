@@ -1,38 +1,58 @@
 package com.example.voiture.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.voiture.authentification.JwtUtil;
 import com.example.voiture.entity.Utilisateur;
+import com.example.voiture.entity.response.ErrorRes;
+import com.example.voiture.entity.response.LoginRes;
+import com.example.voiture.repository.UtilisateurRepository;
 import com.example.voiture.response.Response;
 import com.example.voiture.services.UtilisateurService;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
 
+    private final AuthenticationManager authenticationManager;
+
+    private JwtUtil jwtUtil;
+    private final UtilisateurRepository r_Admin;
+
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @PostMapping("/inscription")
-    public Response ajouterUtilisateur(@RequestBody Utilisateur utilisateur) {
-        Response response = new Response();
-        Utilisateur utilisateurAjoute = utilisateurService.insererUtilisateur(utilisateur);
-        response.setDonner(utilisateurAjoute);
-        if (response.getDonner() != null) {
-            response.setErreur(false);
-            response.setInformation("Inscription reussi");
-        } else {
-            response.setInformation("Erreur en essayant de s'inscrire");
-        }
-        return response;
+    public UtilisateurController(AuthenticationManager authenticationManager, JwtUtil jwtUtil,UtilisateurRepository r_Admin) {
+        this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
+        this.r_Admin = r_Admin;
     }
+
+    // @PostMapping("/inscription")
+    // public Response ajouterUtilisateur(@RequestBody Utilisateur utilisateur) {
+    //     Response response = new Response();
+    //     Utilisateur utilisateurAjoute = utilisateurService.insererUtilisateur(utilisateur);
+    //     response.setDonner(utilisateurAjoute);
+    //     if (response.getDonner() != null) {
+    //         response.setErreur(false);
+    //         response.setInformation("Inscription reussi");
+    //     } else {
+    //         response.setInformation("Erreur en essayant de s'inscrire");
+    //     }
+
+    //     return response;
+    // }
 
     @GetMapping("/utilisateurs")
     public Response getOneUtilisateur(@RequestParam String utilisateurId) {

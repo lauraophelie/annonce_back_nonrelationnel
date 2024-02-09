@@ -10,14 +10,13 @@ import org.springframework.stereotype.Component;
 import com.example.voiture.entity.Utilisateur;
 
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class JwtUtil {
 
     private final String secret_key = "mysecretkey";
-    private long accessTokenValidity = 60*60;
+    private long accessTokenValidity = 86400; // Durée de validité en secondes (ici, 24 heures)
 
     private final JwtParser jwtParser;
 
