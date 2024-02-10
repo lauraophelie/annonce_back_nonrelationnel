@@ -18,10 +18,12 @@ import com.example.voiture.services.UtilisateurService;
 
 import io.jsonwebtoken.Claims;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/conversation")
+@CrossOrigin(origins = "*")
 public class ConversationController {
     private final JwtUtil jwtUtil;
     @Autowired

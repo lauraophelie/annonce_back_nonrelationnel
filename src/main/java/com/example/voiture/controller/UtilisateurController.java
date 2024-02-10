@@ -20,9 +20,13 @@ import com.example.voiture.repository.UtilisateurRepository;
 import com.example.voiture.response.Response;
 import com.example.voiture.services.UtilisateurService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 @RequestMapping("/utilisateur")
+@CrossOrigin(origins = "*")
 public class UtilisateurController {
 
     private final AuthenticationManager authenticationManager;
