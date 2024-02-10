@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.voiture.entity.Conversation;
 import com.example.voiture.entity.Message;
+import com.example.voiture.entity.Utilisateur;
 import com.example.voiture.response.Response;
 import com.example.voiture.services.ConversationService;
+import com.example.voiture.services.FCMService;
 import com.example.voiture.services.MessageService;
 
 @RestController
@@ -28,11 +30,29 @@ public class MessageController {
     @Autowired
     private ConversationService conversationService;
 
+    @Autowired
+    private FCMService notificationService;
+
     @PostMapping("/ajout")
     public Response ajouterMessage(@RequestBody Message message) {
         Response response = new Response();
         Message messageAjoute = messageService.insererMessage(message);
         response.setDonner(messageAjoute);
+        Utilisateur sender = messageAjoute.getSender();
+        Utilisateur destinataire = null;
+        if (sender.getId() == messageAjoute.getConversation().getUtilisateur1().getId()) {
+            destinataire = messageAjoute.getConversation().getUtilisateur2();
+        } else if (sender.getId() == messageAjoute.getConversation().getUtilisateur2().getId()) {
+            destinataire = messageAjoute.getConversation().getUtilisateur1();
+        }
+        @SuppressWarnings("null")
+        String nomDestinataire = destinataire.getNomComplet();
+        // Envoyer une notification après avoir inséré un nouveau message
+        String titreNotification = "Nouveau message reçu";
+        String corpsNotification = "Vous avez reçu un nouveau message de " + nomDestinataire;
+        
+        // Appelez la méthode sendNotification avec les informations nécessaires
+        // notificationService.sendNotification(titreNotification, titreNotification, corpsNotification);
         if (response.getDonner() != null) {
             response.setErreur(false);
             response.setInformation("Message ajoute avec succes");

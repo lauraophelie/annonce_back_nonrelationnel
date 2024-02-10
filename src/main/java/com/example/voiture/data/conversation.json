@@ -45,5 +45,21 @@
             "password": "password456",
             "role":0
         }
+    },{
+        "utilisateur1" : {
+            "nomComplet": "Sophie Turner",
+            "dateNaissance": "1996-02-21",
+            "email": "sophie.turner@example.com",
+            "password": "winterfell2022",
+            "role": 0
+        },
+        "utilisateur2" : {
+            "nomComplet": "John Doe",
+            "dateNaissance": "1990-05-15",
+            "email": "john.doe@example.com",
+            "password": "motdepasse123",
+            "role":0
+        }
     }
+    
 ]
